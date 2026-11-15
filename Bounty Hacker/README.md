@@ -69,7 +69,8 @@ PORT   STATE SERVICE VERSION
 Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
-![Nmap service scan results](screenshots/01-nmap-scan.png)
+<img width="1718" height="878" alt="01-nmap-scan" src="https://github.com/user-attachments/assets/92fd205e-d388-4ece-ba8a-f45b44ee7d35" />
+
 
 Three ports, and the one that jumped out immediately was 21 — FTP is always worth checking for anonymous access before anything else, because "anonymous login enabled" is still shockingly common.
 
@@ -94,7 +95,8 @@ ftp> ls
 -rw-rw-r--    1 ftp      ftp            68 Jun 07  2020 task.txt
 ```
 
-![Anonymous FTP login and directory listing](screenshots/02-ftp-anonymous-login.png)
+<img width="1718" height="878" alt="02-ftp-anonymous-login" src="https://github.com/user-attachments/assets/e9eeaada-f5a3-4a35-8051-a7318972bed1" />
+
 
 FTP's command set is limited — it's not a shell, so `cat` and `nano` don't work inside the FTP prompt itself. Pulled both files down locally with `get` instead:
 
@@ -124,7 +126,7 @@ cat locks.txt
 
 A list of roughly two dozen password variations, all built around the same two words — `Dragon` and `Syndicate` — with different capitalization, leetspeak substitutions, and symbol swaps (`ReddrAGON`, `R3dDRaG0nSynd1c4te`, `REddragOn$ynD1c47e`, and so on). Clearly a human-generated "clever" password list rather than a generic one, which made it a perfect candidate for a targeted brute force rather than something like rockyou.
 
-![locks.txt and task.txt contents](screenshots/03-locks-task-files.png)
+<img width="1718" height="878" alt="03-locks-task-files" src="https://github.com/user-attachments/assets/8fcef08b-a15f-4e3b-b308-74df66ccab27" />
 
 ## Exploitation
 
@@ -150,7 +152,8 @@ ssh lin@10.130.153.193
 Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-139-generic x86_64)
 ```
 
-![Hydra cracking the SSH password and logging in as lin](screenshots/04-hydra-ssh-crack-login.png)
+<img width="1718" height="878" alt="04-hydra-ssh-crack-login" src="https://github.com/user-attachments/assets/ea99a0c2-ba2f-442e-8ad2-ffffc05a803e" />
+
 
 In, as `lin`. First stop: the user flag.
 
@@ -162,7 +165,8 @@ lin@ip-10-130-153-193:~/Desktop$ cat user.txt
 THM{CR1M3_SyNd1C4T3}
 ```
 
-![User flag and sudo -l output](screenshots/05-user-flag-sudo-l.png)
+<img width="1718" height="878" alt="05-user-flag-sudo-l" src="https://github.com/user-attachments/assets/5de2b4dd-ec45-4865-9ba3-4562020f8843" />
+
 
 ## Privilege Escalation
 
